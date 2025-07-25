@@ -96,9 +96,11 @@ export async function getTopGenres() {
         const artistsArray = data?.topartists?.artist;
 
         for (const artist of artistsArray) {
-            const tags = await getArtistTags(artist.name); // Используем artist.name
+            const tags = await getArtistTags(artist.name);
             tags.forEach(tag => {
-                allTags[tag] = (allTags[tag] || 0) + 1;
+                if (tag !== 'govno'){
+                    allTags[tag] = (allTags[tag] || 0) + 1;
+                }
             });
         }
     } catch (error) {
